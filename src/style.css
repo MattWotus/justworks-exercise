@@ -1,7 +1,10 @@
 .outer-container {
-  width: 30%;
+  width: fit-content;
   display: flex;
-  justify-content: space-between;
+}
+
+.inner-container:nth-child(1) {
+  margin-right: 80px;
 }
 
 label {
@@ -23,4 +26,19 @@ div:has(> button) {
 
 .btc {
   margin-bottom: 2em;
+}
+
+@media screen and (max-width: 500px) {
+  h1 {
+    text-align: center;
+  }
+
+  .outer-container {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .inner-container:nth-child(1) {
+    margin-right: 0;
+  }
 }
