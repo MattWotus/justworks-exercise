@@ -1,14 +1,33 @@
 <script setup>
-import {
-  ref
-} from 'vue'
-
+import { ref } from 'vue'
+import { useFetch } from '@vueuse/core'
 defineProps({
   header: String,
 })
-
-function convert(event) {
-  console.log("success")
+function convertDollarAmount(event) {
+  fetch("https://api.coinbase.com/v2/exchange-rates?currency=USD")
+    .then(async response => {
+      const data = await response.json();
+      if (response.ok) {
+        const rates = data.data["rates"];
+        const btcRate = rates.BTC;
+        const ethRate = rates.ETH;
+        const dollarAmount = document.getElementById("dollar-amount").value;
+        const btcSplit = dollarAmount * 0.7;
+        const ethSplit = dollarAmount * 0.3;
+        const btcAmount = (btcRate * btcSplit).toFixed(5);
+        const ethAmount = (ethRate * ethSplit).toFixed(5);
+        document.getElementById("btc-allocation").value = btcAmount;
+        document.getElementById("eth-allocation").value = ethAmount;
+      } else {
+        const error = (data && data.message) || response.statusText;
+        return Promise.reject(error);
+      }
+    })
+    .catch(error => {
+      this.errorMessage = error;
+      console.error("There was an error!", error);
+    });
 }
 </script>
 
@@ -25,7 +44,7 @@ function convert(event) {
           <input type="number" id="dollar-amount" name="dollar-amount">
         </div>
         <div>
-          <button @click="convert">Convert</button>
+          <button @click="convertDollarAmount">Convert</button>
         </div>
       </div>
     </div>
