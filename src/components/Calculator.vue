@@ -8,8 +8,9 @@ onMounted(() => {
   const btcAllocation = document.getElementById("btc-allocation");
   const ethAllocation = document.getElementById("eth-allocation");
   const resetButton = document.getElementById("reset");
-  dollarAmount.addEventListener("input", function() {
-    fetch("https://api.coinbase.com/v2/exchange-rates?currency=USD")
+  const url = "https://api.coinbase.com/v2/exchange-rates?currency=USD";
+  dollarAmount.addEventListener("input", function () {
+    fetch(url)
       .then(async response => {
         const data = await response.json();
         if (response.ok) {
@@ -33,7 +34,7 @@ onMounted(() => {
         console.error("There was an error!", error);
       });
   });
-  resetButton.addEventListener("click", function() {
+  resetButton.addEventListener("click", function () {
     dollarAmount.value = "";
     btcAllocation.value = "";
     ethAllocation.value = "";
