@@ -3,34 +3,62 @@
   display: flex;
 }
 
-.inner-container:nth-child(1) {
+.dollars {
+  width: 28%;
   margin-right: 40px;
 }
 
-.inner-container:nth-child(2) {
+.dollar-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dollar-amount {
+  margin-top: 0.25em;
+}
+
+#date {
+  font-size: 14px;
+  margin-top: 0.5em;
+}
+
+.crypto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   background-color: darkseagreen;
 }
 
 label {
+  margin-bottom: 0.25em;
   font-size: 14px;
   font-weight: bold;
 }
 
-div:has(> input) {
-  margin-top: 0.25em;
+.btc, .eth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btc {
+  margin-bottom: 2em;
 }
 
 input {
   height: 2em;
 }
 
-div:has(> button) {
-  margin-top: 0.5em;
+.conversion-rate {
+  margin-top: 0.25em;
+  font-size: 12px;
+  font-style: italic;
 }
 
-.btc {
-  margin-bottom: 2em;
+#reset {
+  margin-top: 0.5em;
 }
 
 @media screen and (max-width: 500px) {
@@ -43,7 +71,12 @@ div:has(> button) {
     justify-content: space-around;
   }
 
-  .inner-container:nth-child(1) {
+  .dollars {
+    width: 50%;
     margin-right: 0;
+  }
+
+  .dollar-input {
+    align-items: flex-start;
   }
 }
