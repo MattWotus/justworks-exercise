@@ -78,7 +78,7 @@ onMounted(() => {
       <div id="reset">
         <button id="reset-button">Reset</button>
       </div>
-      <div id="date">Conversion rates are as of <span id="date-container"></span> EST</div>
+      <div id="date">Conversion rates are as of <span id="date-container"></span></div>
     </div>
     <div class="inner-container crypto">
       <div class="btc">
