@@ -34,11 +34,13 @@ onMounted(() => {
         console.error("There was an error!", error);
       });
   }
+  // The getRates() function fetches the cryptocurrency exchange rates from the given API endpoint, parses the body text of the response as JSON, finds the exchange rates for BTC and ETH, and displays the exchange rates on the webpage. //
   getRates();
   function getDate() {
     const date = new Date().toLocaleString();
     dateContainer.innerText = date;
   }
+  // The getDate() function creates a new date object, converts the object to a string of the date in the local timezone, and displays the date on the webpage. //
   getDate();
   dollarAmount.addEventListener("input", function () {
     const dollarAmountValue = dollarAmount.value;
@@ -50,6 +52,7 @@ onMounted(() => {
     btcAllocation.value = btcAmount;
     ethAllocation.value = ethAmount;
   })
+  // The event listener added to the dollar amount variable takes the value of the dollar input field, calculates a 70/30 split, calls the getRates() function, calculates the BTC and ETH equivalent of the respective dollar amounts, rounds those numbers to six decimal places, and displays them on the webpage. The event listener runs whenever the value of the dollar input field is changed. //
   resetButton.addEventListener("click", function () {
     dollarAmount.value = "";
     btcAllocation.value = "";
@@ -58,6 +61,7 @@ onMounted(() => {
     getDate();
     dollarAmount.focus();
   })
+  // The event listener added to the reset button clears the values of the dollar input, the BTC allocation input, and the ETH allocation input. It also calls the getRates() and getDate() functions and sets the focus of the webpage to the dollar input. The event listener runs whenever the reset button is clicked. //
 });
 </script>
 
