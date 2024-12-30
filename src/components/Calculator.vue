@@ -29,8 +29,8 @@ onMounted(() => {
         const rates = data.data["rates"];
         btcRate = rates.BTC;
         ethRate = rates.ETH;
-        btcRateContainer.innerText = parseFloat(btcRate).toFixed(6);
-        ethRateContainer.innerText = parseFloat(ethRate).toFixed(6);
+        btcRateContainer.innerText = parseFloat(btcRate).toFixed(10);
+        ethRateContainer.innerText = parseFloat(ethRate).toFixed(10);
       })
       .catch(error => {
         errorContainer.style.visibility = "visible";
@@ -49,8 +49,8 @@ onMounted(() => {
     const dollarAmountValue = e.target.value;
     const btcSplit = dollarAmountValue * 0.7;
     const ethSplit = dollarAmountValue * 0.3;
-    const btcAmount = (btcRate * btcSplit).toFixed(6);
-    const ethAmount = (ethRate * ethSplit).toFixed(6);
+    const btcAmount = (btcRate * btcSplit).toFixed(10);
+    const ethAmount = (ethRate * ethSplit).toFixed(10);
     btcAllocation.value = btcAmount;
     ethAllocation.value = ethAmount;
   })
@@ -111,12 +111,12 @@ onMounted(() => {
       <div class="btc">
         <label for="btc-allocation">70% BTC Allocation</label>
         <input id="btc-allocation" name="btc-allocation" readonly>
-        <div class="conversion-rate">1 USD &#8776; <span id="btc-rate-container"></span> BTC</div>
+        <div class="conversion-rate">1 USD = <span id="btc-rate-container"></span> BTC</div>
       </div>
       <div class="eth">
         <label for="eth-allocation">30% ETH Allocation</label>
         <input id="eth-allocation" name="eth-allocation" readonly>
-        <div class="conversion-rate">1 USD &#8776; <span id="eth-rate-container"></span> ETH</div>
+        <div class="conversion-rate">1 USD = <span id="eth-rate-container"></span> ETH</div>
       </div>
     </div>
   </div>
