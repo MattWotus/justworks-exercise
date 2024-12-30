@@ -75,7 +75,7 @@ onMounted(() => {
     ethAllocation.value = "";
     fetchCounter = fetchCounter + 1;
     if (fetchCounter > 4) {
-      alert("You've hit the maximum number of conversions allowed in a three minute period. We have to limit the number of conversions to ensure everyone is able to use the calculator. Please refresh the page in three minutes to continue using the calculator.");
+      alert("You've hit the maximum number of conversions allowed. We have to limit the number of conversions to ensure everyone is able to use the calculator. Please refresh the page in three minutes to continue using the calculator.");
       dollarAmount.setAttribute("readonly", "");
       resetButton.setAttribute("disabled", "");
       dateText.innerText = "";
