@@ -55,23 +55,39 @@ onMounted(() => {
     ethAllocation.value = ethAmount;
   })
   // The event listener added to the dollar amount variable gets the value of the element where the event occurred (i.e. the dollar input field), calculates a 70/30 split, calculates the BTC and ETH equivalent of the respective dollar amounts, rounds those numbers to six decimal places, and displays them on the webpage. The event listener runs whenever the value of the dollar input field is changed. //
+  function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.textContent = minutes + ":" + seconds;
+      if (--timer < 0) {
+        timer = duration;
+      }
+    }, 1000);
+  }
+  // The startTimer() function creates a countdown timer that is displayed in minutes and seconds. //
   resetButton.addEventListener("click", function () {
     dollarAmount.value = "";
     btcAllocation.value = "";
     ethAllocation.value = "";
     fetchCounter = fetchCounter + 1;
-    if (fetchCounter > 5) {
-      alert("You've hit the maximum number of conversions allowed in a 10 minute period. We have to limit the number of conversions to ensure everyone is able to use the calculator. Please refresh the page in 10 minutes to continue using the calculator.");
+    if (fetchCounter > 4) {
+      alert("You've hit the maximum number of conversions allowed in a three minute period. We have to limit the number of conversions to ensure everyone is able to use the calculator. Please refresh the page in three minutes to continue using the calculator.");
       dollarAmount.setAttribute("readonly", "");
       resetButton.setAttribute("disabled", "");
       dateText.innerText = "";
+      let threeMinutes = 60 * 3;
+      startTimer(threeMinutes, dateText);
     } else {
       getRates();
       getDate();
       dollarAmount.focus();
     }
   })
-  // The event listener added to the reset button clears the values of the dollar input, the BTC allocation input, and the ETH allocation input. If the reset button has been clicked more than five times, it displays an alert with a message, sets the dollar input field to a read only input field, disables the reset button, and clears the inner text of the div containing the date. If the reset button has been clicked five times or fewer, the function calls the getRates() and getDate() functions and sets the focus of the webpage to the dollar input. The event listener runs whenever the reset button is clicked. //
+  // The event listener added to the reset button clears the values of the dollar input, the BTC allocation input, and the ETH allocation input. If the reset button has been clicked more than four times, it displays an alert with a message, sets the dollar input field to a read only input field, disables the reset button, clears the inner text of the div containing the date, and calls the startTimer() function. If the reset button has been clicked four times or fewer, the function calls the getRates() and getDate() functions and sets the focus of the webpage to the dollar input. The event listener runs whenever the reset button is clicked. //
 });
 </script>
 
